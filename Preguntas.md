@@ -58,3 +58,27 @@ class MoviesController < ApplicationController
 El filtro before_action :set_movie, only: [:show, :edit, :update, :destroy] al controlador es para llamar al método set_movie antes de ejecutar las acciones show, edit, update, y destroy.
 
 En el método show, se verifica si la película es nil. Si es nil, se establece un mensaje flash y se redirige al usuario a la vista index. Si la película existe, el código original del método show continúa ejecutándose.
+
+Se colocó la funcionalidad en su propio método en lugar de referenciar directamente request.env['omniauth.auth'] para mejorar la legibilidad, facilitar el mantenimiento, permitir la reutilización del código y seguir principios de diseño estables.
+
+***
+
+3- 
+
+***
+
+4-
+
+***
+
+5-
+
+***
+
+6-
+
+***
+
+7-
+
+***
