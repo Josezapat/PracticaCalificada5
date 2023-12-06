@@ -181,6 +181,15 @@ end
 
 7-
 
+Basándose en el fichero de especificaciones, las instancias de F1 deberían responder a los siguientes métodos para pasar las pruebas:
+
+be_a_pain_in_the_butt: Este método se utiliza para verificar si la instancia de F1 es “a pain in the butt”.
+be_awesome: Este método se utiliza para verificar si la instancia de F1 es “awesome”.
+be_nil: Este método se utiliza para verificar si la instancia de F1 es nil. En este caso, la prueba espera que la instancia de F1 no sea nil.
+== "": Este método se utiliza para verificar si la instancia de F1 es igual a la cadena vacía “”. En este caso, la prueba espera que la instancia de F1 no sea igual a “”.
+
+El código está escrito en Ruby y está destinado a ser utilizado como definiciones de pasos en pruebas de comportamiento (BDD) utilizando la biblioteca de pruebas Cucumber, junto con Capybara para las pruebas de interfaz web.
+
 ***
 
 Pregunta:   Utilizando historias de usuario y Cucumber (8 puntos)
