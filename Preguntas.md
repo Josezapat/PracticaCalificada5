@@ -63,7 +63,47 @@ Se colocó la funcionalidad en su propio método en lugar de referenciar directa
 
 ***
 
-3- 
+3- Modificaremos nuestros archivos index.html.erb de neustra PC3 https://github.com/Josezapat/PC3-DesarrollodeSoftware/tree/master/app/views/movies
+
+```html
+<!-- Agrega las casillas de verificación con las clasificaciones de películas -->
+<input type="checkbox" id="rating-G" checked> G
+<input type="checkbox" id="rating-PG" checked> PG
+<!-- Agrega más casillas de verificación según las clasificaciones -->
+
+<!-- Lista de películas -->
+<ul id="movieList">
+  <li data-rating="G">Película con clasificación G</li>
+  <li data-rating="PG">Película con clasificación PG</li>
+  <!-- Agrega más elementos li según las clasificaciones de tus películas -->
+</ul>
+
+<script>
+  // Asegúrate de que este código se ejecute después de que la página se haya cargado
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtén todas las casillas de verificación por su selector
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // Agrega un event listener a cada casilla de verificación
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        // Obtén la clasificación de la casilla de verificación actual
+        const rating = checkbox.id.replace('rating-', '');
+
+        // Obtén todas las películas con la clasificación correspondiente
+        const movies = document.querySelectorAll(`li[data-rating="${rating}"]`);
+
+        // Muestra u oculta las películas según si la casilla está marcada o no
+        movies.forEach(function (movie) {
+          movie.style.display = checkbox.checked ? 'block' : 'none';
+        });
+      });
+    });
+  });
+</script>
+```
+
+En este ejemplo, cada casilla de verificación tiene un identificador único basado en su clasificación. Cuando una casilla de verificación se desmarca, se ocultan las películas que tienen la clasificación correspondiente. 
 
 ***
 
