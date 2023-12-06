@@ -1,10 +1,20 @@
 class MoviesController < ApplicationController
   before_action :set_ratings, only: [:index, :show]
 
-  def show
-    @movie = Movie.find(params[:id])
-  end
 
+#Parte modificada
+  def show
+    # Se utiliza el método set_movie para obtener la película por su ID
+    if @movie.nil?
+      flash[:notice] = 'La película que estás buscando no existe.'
+      redirect_to action: 'index'
+    else
+      # Si la película existe, el código original del método show continúa aquí
+    end
+  end
+#Parte modificada
+
+  
   def index
     @movies = Movie.all
   
