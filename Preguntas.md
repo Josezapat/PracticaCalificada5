@@ -137,7 +137,42 @@ Estas definiciones de pasos simulan la creación de la película "Inception" con
 ***
 
 5-
+Supongamos que tenemos este pseudocodigo:
+Escenario: Agregar una nueva película con calificación y fecha de estreno
+  Dado que estoy en la página de creación de películas
+  Cuando relleno el formulario con la calificación "5" y la fecha de estreno "2023-01-01"
+  Y hago clic en el botón "Guardar"
+  Entonces debería ver la información de la película en la página de detalles
 
+Ahora, ajustemos este escenario para utilizar un formulario en blanco:
+Escenario: Agregar una nueva película mediante un formulario en blanco
+  Dado que estoy en la página de creación de películas
+  Cuando relleno el formulario en blanco
+  Y hago clic en el botón "Guardar"
+  Entonces debería ver la información de la película en la página de detalles
+
+Creamos el archivo step_definitions:
+
+```ruby
+# features/step_definitions/movie_steps.rb
+
+Dado(/^que estoy en la página de creación de películas$/) do
+  # Lógica para navegar a la página de creación de películas
+end
+
+Cuando(/^relleno el formulario en blanco$/) do
+  # Lógica para rellenar el formulario en blanco
+
+end
+
+Y(/^hago clic en el botón "Guardar"$/) do
+  # Lógica para hacer clic en el botón de guardar
+end
+
+Entonces(/^debería ver la información de la película en la página de detalles$/) do
+  # Lógica para verificar que la información de la película se muestra en la página de detalles
+end
+```
 ***
 
 6-
