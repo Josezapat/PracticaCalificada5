@@ -79,9 +79,9 @@ Se colocó la funcionalidad en su propio método en lugar de referenciar directa
 </ul>
 
 <script>
-  // Asegúrate de que este código se ejecute después de que la página se haya cargado
+ 
   document.addEventListener("DOMContentLoaded", function () {
-    // Obtén todas las casillas de verificación por su selector
+    // Se obtiene todas las casillas de verificación por su selector
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
     // Agrega un event listener a cada casilla de verificación
@@ -90,7 +90,7 @@ Se colocó la funcionalidad en su propio método en lugar de referenciar directa
         // Obtén la clasificación de la casilla de verificación actual
         const rating = checkbox.id.replace('rating-', '');
 
-        // Obtén todas las películas con la clasificación correspondiente
+        // Obtiene todas las películas con la clasificación correspondiente
         const movies = document.querySelectorAll(`li[data-rating="${rating}"]`);
 
         // Muestra u oculta las películas según si la casilla está marcada o no
@@ -260,10 +260,10 @@ end
  4-En tu archivo movie_steps.rb, puedes completar la definición de paso de la siguiente manera:
  ```ruby
  Then(/^I should see all the movies$/) do
-  # Obtén todas las filas de la tabla HTML que contiene la lista completa de películas
+  # Obtenemos todas las filas de la tabla HTML 
   rows = page.all('table#movies tbody tr')
 
-  # Verifica que el número de filas coincida con el número total de películas en tu base de datos
+  # Verificamos que el número de filas coincida con el número total de películas en la base de datos
   expect(rows.count).to eq(Movie.count)
 end
 ```
@@ -290,7 +290,7 @@ end
   index_movie1 = page.body.index(movie1)
   index_movie2 = page.body.index(movie2)
 
-  # Verifica que la primera película aparezca antes que la segunda
+  # Esto verifica que la primera película aparezca antes que la segunda
   expect(index_movie1).to be < index_movie2
 end
 ```
