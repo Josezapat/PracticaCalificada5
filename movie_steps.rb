@@ -12,4 +12,3 @@
     expect(page).to have_content(movie['Release Date'])
   end
 end
-```
