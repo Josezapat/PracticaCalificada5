@@ -1,1 +1,18 @@
+# features/step_definitions/movie_steps.rb
 
+Dado(/^que estoy en la página de creación de películas$/) do
+  # Lógica para navegar a la página de creación de películas
+end
+
+Cuando(/^relleno el formulario en blanco$/) do
+  # Lógica para rellenar el formulario en blanco
+
+end
+
+Y(/^hago clic en el botón "Guardar"$/) do
+  # Lógica para hacer clic en el botón de guardar
+end
+
+Entonces(/^debería ver la información de la película en la página de detalles$/) do
+  # Lógica para verificar que la información de la película se muestra en la página de detalles
+end
