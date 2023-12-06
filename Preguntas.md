@@ -253,7 +253,7 @@ end
 
 page.body devuelve el cuerpo HTML de la página como si fuera una cadena gigante.
 Se utiliza index para obtener los índices de aparición de cada película en la cadena HTML.
-La expectativa expect(index_movie1).to be < index_movie2 verifica que la primera película aparece antes que la segunda en la cadena HTML.
+
 ***
 
 7- Esta definición de paso utiliza la propiedad page.body de Capybara para obtener el cuerpo HTML de la página como una cadena de texto. Luego, se utiliza el método index para obtener los índices de aparición de dos películas específicas en esa cadena HTML.
