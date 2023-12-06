@@ -107,8 +107,33 @@ En este ejemplo, cada casilla de verificación tiene un identificador único bas
 
 ***
 
-4-
+4-Para el archivo steps.rb
 
+```cucumber
+
+Given(/^the movie "(.*?)" exists$/) do |movie_title|
+  # Lógica para crear una película con el título proporcionado
+
+  Movie.create(title: movie_title)
+end
+
+Given(/^it has (\d+) reviews$/) do |review_count|
+  # Lógica para asignar un número específico de revisiones a la película
+
+  movie = Movie.last
+  review_count.to_i.times do
+    movie.reviews.create
+  end
+end
+
+Given(/^its average review score is (\d+\.\d+)$/) do |average_score|
+  # Lógica para asignar un puntaje promedio específico a la película
+
+  movie = Movie.last
+  movie.reviews.each { |review| review.update(score: average_score.to_f / movie.reviews.count) }
+end
+```
+Estas definiciones de pasos simulan la creación de la película "Inception" con 5 revisiones y un puntaje promedio de 3.5. Asegúrate de adaptar estos pasos a la lógica específica de tu aplicación y a las herramientas que estás utilizando para las pruebas de aceptación automatizadas (BDD).
 ***
 
 5-
@@ -122,3 +147,22 @@ En este ejemplo, cada casilla de verificación tiene un identificador único bas
 7-
 
 ***
+
+Pregunta:   Utilizando historias de usuario y Cucumber (8 puntos)
+Utilizaremos nuestro repositorio de la PC3: https://github.com/Josezapat/PC3-DesarrollodeSoftware
+Ejecutamos los comandos:
+bundle install --without production 
+
+![image](https://github.com/Josezapat/PracticaCalificada5/assets/90808325/f53e1c31-b06c-442f-997f-3fb5fa789087)
+
+bin/rake db:setup 
+
+![image](https://github.com/Josezapat/PracticaCalificada5/assets/90808325/9de679bd-e4d6-40f1-91bf-53a869953804)
+
+Nos lleva al navegador y nos aparece la lista que contiene películas:
+
+![image](https://github.com/Josezapat/PracticaCalificada5/assets/90808325/7cf2ec0c-970c-4b11-bc33-26ce1b4ba6da)
+
+Antes de continuar verifica que tu aplicación esté configurada correctamente y sin errores:
+
+bundle exec cucumber
