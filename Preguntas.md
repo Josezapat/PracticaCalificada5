@@ -262,3 +262,27 @@ La línea expect(index_movie1).to be < index_movie2 establece una expectativa de
 
 Podemos concluir que la definición de paso y la expectativa se utilizan para verificar el orden relativo de dos elementos en el cuerpo HTML de la página, en este caso, para verificar que la primera película aparece antes que la segunda.
 
+***
+Pregunta (5 puntos) : Para el siguiente ejercicio utiliza la lista de proyectos Rails de código abierto en Open Source Rails: https://github.com/gramantin/awesome-rails#open-source-rails-apps 
+
+1. Describiré algunos Patrones de Diseño ya que en el contexto de proyectos Rails de código abierto, algunos patrones de diseño comunes podrían ser:
+
+MVC (Model-View-Controller): Este patrón es ampliamente utilizado en aplicaciones Rails. El modelo maneja la lógica de negocio y los datos, la vista maneja la presentación y el controlador maneja la interacción del usuario y actúa como intermediario entre el modelo y la vista.
+
+Observer: Podría ser aplicado para manejar eventos asíncronos. Un ejemplo sería notificar a los objetos interesados (observadores) cuando un modelo cambia su estado.
+
+Decorator: Sirve para agregar comportamientos adicionales a objetos sin modificar su estructura. En Rails, esto podría ser útil para extender funcionalidades de modelos o vistas de manera dinámica.
+
+etc 
+
+***
+
+2. Paradigma de Diseño:
+Para un sistema simple que responde a una historia de usuario concreta, el paradigma de diseño adecuado podría ser el Diseño Orientado a Objetos (DOO). Rails sigue este paradigma, y su estructura MVC es un ejemplo de cómo se pueden organizar los objetos para una fácil mantenibilidad y escalabilidad.
+
+***
+
+4. Arquitectura Software:
+La elección de la arquitectura depende de la complejidad de la historia de usuario. Para un sistema simple, la arquitectura monolítica podría ser apropiada. En este enfoque, todo el código se encuentra en un solo lugar, facilitando la implementación y la depuración. sobretodo en el Proyecto Rails es común y puede ser eficiente para aplicaciones de tamaño moderado.
+
+
