@@ -133,7 +133,7 @@ Given(/^its average review score is (\d+\.\d+)$/) do |average_score|
   movie.reviews.each { |review| review.update(score: average_score.to_f / movie.reviews.count) }
 end
 ```
-Estas definiciones de pasos simulan la creación de la película "Inception" con 5 revisiones y un puntaje promedio de 3.5. Asegúrate de adaptar estos pasos a la lógica específica de tu aplicación y a las herramientas que estás utilizando para las pruebas de aceptación automatizadas (BDD).
+Estas definiciones de pasos simulan la creación de la película "Inception" con 5 revisiones y un puntaje promedio de 3.5. 
 ***
 
 5-
@@ -166,3 +166,99 @@ Nos lleva al navegador y nos aparece la lista que contiene películas:
 Antes de continuar verifica que tu aplicación esté configurada correctamente y sin errores:
 
 bundle exec cucumber
+
+ Resuelve cada una de las preguntas:
+
+ 1- 
+Completa el escenario restrict to movies with PG or R ratings en filter_movie_list.feature.
+
+En el archivo filter_movie_list.feature, completamos el escenario de la siguiente manera:
+ ```cucumber
+ Scenario: restrict to movies with PG or R ratings
+  Given I am on the RottenPotatoes home page
+  When I check the "PG" checkbox
+  And I check the "R" checkbox
+  And I press "Refresh Page"
+  Then I should see only movies with ratings: PG, R
+  And I should not see movies with other ratings
+```
+ ***
+ 2- 
+En el archivo web_steps.rb, agregamos la siguiente definición de paso:
+ ```ruby
+ Given(/^I check the following ratings: (.+)$/) do |ratings|
+  ratings.split(', ').each do |rating|
+    step "I check the \"#{rating}\" checkbox"
+  end
+end
+```
+ ***
+ 3- En tu archivo movie_steps.rb, puedes agregar la siguiente definición de paso:
+
+ ```ruby
+ Then(/^I should see the following movies$/) do |table|
+  # Obtén todas las filas de la tabla HTML que contiene la lista de películas
+  rows = page.all('table#movies tbody tr')
+
+  # Verifica que el número de filas coincida con el número de filas en la tabla del paso
+  expect(rows.count).to eq(table.hashes.count)
+
+  # Verifica que cada película de la tabla del paso esté presente en la lista de películas
+  table.hashes.each do |movie|
+    expect(page).to have_content(movie['Movie Title'])
+    expect(page).to have_content(movie['Rating'])
+    expect(page).to have_content(movie['Release Date'])
+  end
+end
+```
+
+ ***
+ 4-En tu archivo movie_steps.rb, puedes completar la definición de paso de la siguiente manera:
+ ```ruby
+ Then(/^I should see all the movies$/) do
+  # Obtén todas las filas de la tabla HTML que contiene la lista completa de películas
+  rows = page.all('table#movies tbody tr')
+
+  # Verifica que el número de filas coincida con el número total de películas en tu base de datos
+  expect(rows.count).to eq(Movie.count)
+end
+```
+ ***
+
+ 5-Completamos el escenario all ratings selected en filter_movie_list.feature utilizando las nuevas definiciones de pasos:
+ ```cucumber
+ Scenario: all ratings selected
+  Given I am on the RottenPotatoes home page
+  When I check the following ratings: G, PG, R
+  And I press "Refresh Page"
+  Then I should see all the movies
+```
+ ***
+
+
+ 6- a,b y c
+ 
+ Para crear una definición de paso que pruebe si una película aparece antes que otra en la lista de salida, podemos hacer uso de Capybara y sus métodos de búsqueda en la página. Entonces vamos a agregar al archivo movie_steps.rb:
+ 
+ ```ruby
+ Then(/^I should see "(.*?)" before "(.*?)"$/) do |movie1, movie2|
+  # Encuentra los índices de las películas en la lista de salida
+  index_movie1 = page.body.index(movie1)
+  index_movie2 = page.body.index(movie2)
+
+  # Verifica que la primera película aparezca antes que la segunda
+  expect(index_movie1).to be < index_movie2
+end
+```
+
+page.body devuelve el cuerpo HTML de la página como si fuera una cadena gigante.
+Se utiliza index para obtener los índices de aparición de cada película en la cadena HTML.
+La expectativa expect(index_movie1).to be < index_movie2 verifica que la primera película aparece antes que la segunda en la cadena HTML.
+***
+
+7- Esta definición de paso utiliza la propiedad page.body de Capybara para obtener el cuerpo HTML de la página como una cadena de texto. Luego, se utiliza el método index para obtener los índices de aparición de dos películas específicas en esa cadena HTML.
+
+La línea expect(index_movie1).to be < index_movie2 establece una expectativa de que el índice de la primera película (index_movie1) debe ser menor que el índice de la segunda película (index_movie2). Es decir  verifica que la primera película aparece antes que la segunda en la cadena HTML.
+
+Podemos concluir que la definición de paso y la expectativa se utilizan para verificar el orden relativo de dos elementos en el cuerpo HTML de la página, en este caso, para verificar que la primera película aparece antes que la segunda.
+
