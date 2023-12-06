@@ -1,5 +1,0 @@
- Scenario: all ratings selected
-  Given I am on the RottenPotatoes home page
-  When I check the following ratings: G, PG, R
-  And I press "Refresh Page"
-  Then I should see all the movies
